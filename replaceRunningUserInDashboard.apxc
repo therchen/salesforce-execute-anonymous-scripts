@@ -1,0 +1,13 @@
+String oldUserId = '00540000003Y4IEAA0';
+String newUserId = '00540000003MwDrAAK';
+List<Dashboard>() dashboards = [select id, Title from Dashboard where Type='SpecifiedUser' and RunningUserId =: oldUserId];
+if(!dashboards.isEmpty()){
+    List<Dashboard>() dashboards2 = new List<Dashboard>();
+    for(Dashboard d: dashboards){
+        d.RunningUserId = newUserId;
+        dashboards2.add(d);
+    }
+    if(!dashboards2.isEmpty()){
+        update dashboards2;
+    }    
+}
