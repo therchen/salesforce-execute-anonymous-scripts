@@ -1,0 +1,2 @@
+List<FlowInterview> interviews = [SELECT Id FROM FlowInterview WHERE InterviewLabel LIKE '%OLI - Sub - Intacct Handler%'];
+delete interviews;
