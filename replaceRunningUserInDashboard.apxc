@@ -1,13 +1,14 @@
-String oldUserId = '00540000003Y4IEAA0';
-String newUserId = '00540000003MwDrAAK';
-List<Dashboard>() dashboards = [select id, Title from Dashboard where Type='SpecifiedUser' and RunningUserId =: oldUserId];
-if(!dashboards.isEmpty()){
-    List<Dashboard>() dashboards2 = new List<Dashboard>();
-    for(Dashboard d: dashboards){
+//USE THIS WHEN YOU HAVE AN INACTIVE USER THAT NEEDS TO BE REMOVE FROM MANY, MANY DASHBOARDS AS THE RUNNING USER - REDUCE CLICKS
+String oldUserId = 'UserOneId';
+String newUserId = 'UserTwoId';
+List<Dashboard>() dashboardsIn = [Select Id, Title from Dashboard where Type='SpecifiedUser' and RunningUserId =: oldUserId];
+List<Dashboard>() dashboardsOut = new List<Dashboard>();
+if(!dashboardsIn.isEmpty()){
+    for(Dashboard d: dashboardsIn){
         d.RunningUserId = newUserId;
-        dashboards2.add(d);
+        dashboardsOut.add(d);
     }
-    if(!dashboards2.isEmpty()){
-        update dashboards2;
+    if(!dashboardsOut.isEmpty()){
+        update dashboardsOut;
     }    
 }
